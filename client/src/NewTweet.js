@@ -4,8 +4,11 @@ import "./NewTweet.css";
 const NewTweet = props => {
   const handleSubmit = event => {
     event.preventDefault();
-    const tweetContent = event.target.elements.text.value;
+    const textArea = event.target.elements.text;
+    const tweetContent = textArea.value;
     props.postTweet(tweetContent);
+    textArea.value = "";
+    textArea.focus();
   };
   return (
     <section className="new-tweet">
