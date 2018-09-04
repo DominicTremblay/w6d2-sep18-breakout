@@ -1,5 +1,7 @@
 import React from "react";
 import "./Article.css";
+import moment from "moment";
+
 const Article = props => {
   const {
     user: {
@@ -11,6 +13,8 @@ const Article = props => {
     date
   } = props;
 
+  const fromDate = moment(date).fromNow();
+
   return (
     <article>
       <header>
@@ -20,7 +24,7 @@ const Article = props => {
       </header>
       <p className="tweet-content">{text}</p>
       <footer>
-        <div className="date">{date}</div>
+        <div className="date">{fromDate}</div>
         <div className="icons">
           <i className="fas fa-flag" />
           <i className="fas fa-retweet" />
