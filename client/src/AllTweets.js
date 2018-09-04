@@ -2,11 +2,18 @@ import React from "react";
 import Article from "./Article";
 
 const AllTweets = props => {
-  return (
-    <section id="tweet-container">
-      <Article />
-    </section>
-  );
+  const { tweets } = props;
+
+  const tweetArticles = tweets.map(tweet => (
+    <Article
+      id={tweet._id}
+      content={tweet.content}
+      user={tweet.user}
+      date={tweet.created_at}
+    />
+  ));
+
+  return <section id="tweet-container">{tweetArticles}</section>;
 };
 
 export default AllTweets;

@@ -24,7 +24,7 @@ class App extends Component {
         <NavBar />
         <main className="mcontainer">
           <NewTweet />
-          <AllTweets />
+          <AllTweets tweets={this.state.tweets} />
         </main>
       </div>
     );
