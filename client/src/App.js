@@ -2,15 +2,16 @@ import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./NavBar";
 import NewTweet from "./NewTweet";
+import AllTweets from "./AllTweets";
 
 class App extends Component {
   render() {
     return (
       <div>
         <NavBar />
-        <main class="mcontainer">
+        <main className="mcontainer">
           <NewTweet />
-          <section id="tweet-container" />
+          <AllTweets />
         </main>
       </div>
     );

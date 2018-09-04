@@ -1,0 +1,48 @@
+#tweet-container article {
+  border: 1px solid darkgrey;
+  border-radius: 10px;
+  margin-top: 1em;
+  overflow: hidden;
+}
+
+#tweet-container article {
+  opacity: 0.4;
+  margin-bottom: 2em;
+}
+
+article header {
+  background-color: whitesmoke;
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
+}
+
+article header img {
+  border-radius: 10%;
+}
+
+article header .name {
+  font-size: 1.5em;
+  font-weight: bold;
+  flex-basis: 60%;
+}
+
+article header .handle {
+  flex-basis: 23%;
+}
+
+article .tweet-content {
+  padding: 0.5em;
+}
+
+article footer {
+  padding: 0.5em;
+  border-top: 1px solid darkgrey;
+  display: flex;
+  justify-content: space-between;
+}
+
+article footer .icons {
+  color: mediumseagreen;
+  opacity: 0;
+}
