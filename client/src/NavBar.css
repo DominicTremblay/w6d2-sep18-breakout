@@ -1,0 +1,36 @@
+#nav-bar {
+  position: fixed;
+  height: 80px;
+  padding: 0 2em 0 2em;
+  background-color: #00a087;
+  color: #e8fdff;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  z-index: 1;
+}
+
+#nav-bar .logo {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+#nav-bar .header {
+  font-size: 2em;
+  flex-basis: 60%;
+}
+
+#nav-bar .compose-btn {
+  padding: 1em;
+  border: 1px solid darkslategray;
+  border-radius: 5px;
+  color: #00a087;
+  background-color: aliceblue;
+  text-decoration: none;
+}
+
+#nav-bar .compose-btn:hover {
+  color: midnightblue;
+  background-color: azure;
+}

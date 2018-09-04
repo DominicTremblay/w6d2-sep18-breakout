@@ -1,8 +1,8 @@
 # ReactJS Breakout
 
 - What is React
-- Add CSS to Components
 - React Components: class vs stateless
+- Add CSS to Components
 - Data Flow: data down, action up
 - Binding Functions
 - PropTypes

@@ -1,0 +1,28 @@
+section.new-tweet {
+  border: 1px solid darkgrey;
+  padding: 0 1em 0 1em;
+  background-color: whitesmoke;
+  border-radius: 10px;
+}
+
+.new-tweet h2 {
+  border-bottom: 1px solid darkgrey;
+  margin-top: 0.5em;
+}
+
+.new-tweet form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+}
+
+.new-tweet textarea {
+  flex-basis: 100%;
+  margin-bottom: 0.5em;
+  padding: 0.4em;
+}
+
+ul.errors {
+  color: red;
+}

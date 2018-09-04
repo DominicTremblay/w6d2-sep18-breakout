@@ -1,4 +1,5 @@
 import React from "react";
+import "./NewTweet.css";
 
 const NewTweet = props => (
   <section className="new-tweet">
