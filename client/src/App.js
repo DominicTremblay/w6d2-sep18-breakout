@@ -18,12 +18,25 @@ class App extends Component {
       .then(tweets => this.setState({ tweets: tweets }));
   }
 
+  postTweet = content => {
+    console.log({ content });
+    fetch("http://localhost:8080/tweets", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({ text: content })
+    })
+      .then(response => response.json())
+      .then(tweet => this.setState({ tweets: [tweet, ...this.state.tweets] }));
+  };
+
   render() {
     return (
       <div>
         <NavBar />
         <main className="mcontainer">
-          <NewTweet />
+          <NewTweet postTweet={this.postTweet} />
           <AllTweets tweets={this.state.tweets} />
         </main>
       </div>

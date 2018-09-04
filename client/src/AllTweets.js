@@ -6,7 +6,7 @@ const AllTweets = props => {
 
   const tweetArticles = tweets.map(tweet => (
     <Article
-      id={tweet._id}
+      key={tweet._id}
       content={tweet.content}
       user={tweet.user}
       date={tweet.created_at}
