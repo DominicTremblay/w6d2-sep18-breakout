@@ -1,41 +1,60 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+"use strict";
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// Basic express setup:
 
-var app = express();
+const PORT = 8080;
+const express = require("express");
+const bodyParser = require("body-parser");
+const { MongoClient } = require("mongodb");
+const sassMiddleware = require("node-sass-middleware");
+const cookieSession = require("cookie-session");
+const cors = require("cors");
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+const MONGODB_URI = "mongodb://localhost:27017";
+const app = express();
+app.use(cors());
+app.use(
+  sassMiddleware({
+    /* Options */
+    src: "./scss",
+    dest: "./public/styles",
+    debug: true,
+    outputStyle: "compressed",
+    prefix: "/styles" // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
+  })
+);
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["a-super-secret-key"],
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+    // Cookie Options
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  })
+);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static("public"));
+
+MongoClient.connect(
+  MONGODB_URI,
+  (err, client) => {
+    if (err) {
+      console.error(`Failed to connect: ${MONGODB_URI}`);
+      throw err;
+    }
+    const db = client.db("tweeter");
+    console.log(`Connected to mongodb: ${MONGODB_URI}`);
+    const DataHelpers = require("./lib/data-helpers.js")(db);
+
+    const tweetsRoutes = require("./routes/tweets")(DataHelpers);
+    app.use("/tweets", tweetsRoutes);
+    // db.close();
+  }
+);
+
+app.listen(PORT, () => {
+  console.log("Example app listening on port " + PORT);
 });
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
