@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("/tweets")
+    fetch("http://localhost:8080/tweets")
       .then(response => response.json())
       .then(tweets => this.setState({ tweets: tweets }));
   }
